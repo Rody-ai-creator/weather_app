@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيق تنبيه الزلازل</title>
+    <!-- Link to Google Fonts for Arabic -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <header>
+        <h1>تطبيق تنبيه الزلازل</h1>
+    </header>
+    <div class="container">
+        <div class="buttons">
+            <button onclick="fetchLastEarthquakeData()">عرض الزلازل في مصر (آخر 14 يوم)</button>
+            <button onclick="simulateUpcomingEarthquakes()">محاكاة الزلازل القادمة</button>
+        </div>
+        <div id="alert-container"></div>
+    </div>
+    <footer>
+        <p>&copy;تطبيق تنبيه الزلازل</p>
+    </footer>
+    <script src="script.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    }, err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
